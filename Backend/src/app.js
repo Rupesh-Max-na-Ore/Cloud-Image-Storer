@@ -3,8 +3,11 @@ const multer = require('multer');
 
 const uploadImage = require('./services/storage.service');
 const Post = require('./models/post.model');
+const cors = require('cors');
 
 const app = express();
+
+app.use(cors());
 
 app.use(express.json());
 
