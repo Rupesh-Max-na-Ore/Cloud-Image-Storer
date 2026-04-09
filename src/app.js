@@ -49,4 +49,17 @@ app.post('/create-post', upload.single('image'), async (req, res) => {
     }
 });
 
+app.get('/posts', async (req, res) => {
+    try {
+        const posts = await Post.find();
+        return res.status(200).json(posts);
+    } catch (err) {
+        console.error(err);
+        res.status(500).json({
+            error: "Something went wrong",
+            details: err.message
+        });
+    }
+});
+
 module.exports = app;
