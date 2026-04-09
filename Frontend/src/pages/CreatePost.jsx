@@ -1,14 +1,17 @@
 import React from 'react'
 import axios from 'axios'
-import 
+import { useNavigate } from 'react-router-dom'
 
 const CreatePost = () => {
+      const navigate = useNavigate();
+
       // by default html reloads the page when form is submitted, to prevent that we use e.preventDefault() in the handleSubmit function
       const handleSubmit = async (e) => {
           e.preventDefault()
 
           const formData = new FormData(e.target)
           axios.post('http://localhost:3000/create-post', formData).then((res)=>{
+                navigate('/feed') // navigate to feed page after successful post creation
                 console.log(res.data) 
                 alert("Post created successfully")
                 e.target.reset() // reset the form after successful submission
